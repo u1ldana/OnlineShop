@@ -1,5 +1,7 @@
 package kz.aitu.onlineshop.services;
 
+import kz.aitu.onlineshop.models.Buyer;
+import kz.aitu.onlineshop.models.Salesman;
 import kz.aitu.onlineshop.models.User;
 import kz.aitu.onlineshop.repositories.UserRepositoryInterface;
 import kz.aitu.onlineshop.services.interfaces.UserServiceInterface;
@@ -28,5 +30,24 @@ public class UserService implements UserServiceInterface {
     @Override
     public User create(User user) {
         return repo.save(user);
+    }
+    @Override
+    public User getByEmail(String email){
+        return repo.findByEmail(email);
+    }
+
+    @Override
+    public List<User> getByPassword(String password) {
+        return repo.findByPassword(password);
+    }
+
+    @Override
+    public List<User> getAllBuyers() {
+        return repo.findByStatus(true);
+    }
+
+    @Override
+    public List<User> getAllSalesmans() {
+        return repo.findByStatus(false);
     }
 }
