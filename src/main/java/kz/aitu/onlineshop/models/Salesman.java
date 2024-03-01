@@ -1,4 +1,20 @@
 package kz.aitu.onlineshop.models;
 
-public class Salesman extends User{
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "users")
+
+public class Salesman{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+    private String surname;
+    private boolean status;
+    private double bank;
+    private String email;
+    private String password;
 }

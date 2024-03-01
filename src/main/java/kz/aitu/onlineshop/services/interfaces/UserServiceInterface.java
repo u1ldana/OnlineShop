@@ -1,9 +1,5 @@
 package kz.aitu.onlineshop.services.interfaces;
-
-import kz.aitu.onlineshop.models.Buyer;
-import kz.aitu.onlineshop.models.Salesman;
 import kz.aitu.onlineshop.models.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 public interface UserServiceInterface {

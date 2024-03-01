@@ -1,11 +1,14 @@
 package kz.aitu.onlineshop.repositories;
 
-import kz.aitu.onlineshop.models.Order;
+import kz.aitu.onlineshop.models.Buyer;
+import kz.aitu.onlineshop.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-public interface BuyerRepositoryInterface extends JpaRepository<Order,Integer> {
-    List<Order> findByBuyerId(int id);
+
+public interface BuyerRepositoryInterface extends JpaRepository<Buyer,Integer> {
+
+    Buyer findByEmail(String email);
+
 
 }

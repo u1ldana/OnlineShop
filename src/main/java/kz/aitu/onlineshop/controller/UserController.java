@@ -39,16 +39,23 @@ public class UserController {
         }
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
-    @GetMapping("/login/{user_email}/{user_password}")
-    public ResponseEntity<User> login(@PathVariable("user_email") String email, @PathVariable("user_password") String password){
-        User userEmail = service.getByEmail(email);
-        List<User> passwordList = service.getByPassword(password);
-        for(User user : passwordList){
-            if(user == userEmail){
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            }
+    @GetMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User user){
+        User userEmail = service.getByEmail(user.getEmail());
+        if(userEmail.getPassword() == user.getPassword()){
+            return new ResponseEntity<>(userEmail, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @PostMapping("/signup")
+    public ResponseEntity<String> signUp(@RequestBody User user){
+        User ifExist = service.getByEmail(user.getEmail());
+        if(ifExist == null){
+            service.create(user);
+            return  new ResponseEntity<>("Welcome!",HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>("User with this email already exist!", HttpStatus.NOT_FOUND);
+        }
     }
     @GetMapping("/buyers")
     public List<User> getAllBuyers(){
@@ -58,4 +65,5 @@ public class UserController {
     public List<User> getAllSalesmans(){
         return service.getAllSalesmans();
     }
+
 }
