@@ -10,5 +10,9 @@ public interface UserServiceInterface {
     List<User> getByPassword(String password);
     List<User> getAllBuyers();
     List<User> getAllSalesmans();
+    List<User> getUserByName(String name);
+    List<User> getUserBySurname(String surname);
+    List<User> getBuyerByName(String name);
+    List<User> getBuyerBySurname(String surname);
 
 }
