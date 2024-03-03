@@ -50,4 +50,23 @@ public class UserService implements UserServiceInterface {
     public List<User> getAllSalesmans() {
         return repo.findByStatus(false);
     }
+    @Override
+    public List<User> getUserByName(String name) {
+        return repo.findByName(name);
+    }
+
+    @Override
+    public List<User> getUserBySurname(String surname) {
+        return repo.findBySurname(surname);
+    }
+
+    @Override
+    public List<User> getBuyerByName(String name) {
+        return repo.findByNameAndStatus(name,true);
+    }
+
+    @Override
+    public List<User> getBuyerBySurname(String surname) {
+        return repo.findBySurnameAndStatus(surname,true);
+    }
 }
